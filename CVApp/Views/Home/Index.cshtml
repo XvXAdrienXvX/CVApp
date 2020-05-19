@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="~/css/Index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("h1").animate({
+           left: '10%',
+           opacity:'1',
+
+        }, "slow");
+        $("h2").animate({
+            left: '10%',
+            opacity: '1',
+
+        }, "slow");
+    });
+</script>
+<div class="background"></div>
+<h1>Software</h1>
+<h2>Developer</h2>
+<div class="flex-container">
+    <div class="inner">
+        <p>Adrien</p>
+        <a href="/Home/About" class="more-info">Find out more&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+    </div>
+
+</div>

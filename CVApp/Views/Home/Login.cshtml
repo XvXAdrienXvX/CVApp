@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/Login.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/Login.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="user">
+            <div class="d-flex justify-content-center">
+            
+            </div>
+            <div id="mainDiv" class="text-center">
+
+                <label for="username">Username</label>
+
+                <input id="username" type="text" name="username" placeholder="Enter Username" required />
+
+                <label for="Password">Password</label>
+
+                <input id="Password" onkeyup="checkStrength()" onkeydown="checkStrength()" onfocus="" onblur="" type="password" name="password" placeholder="Enter Password" required />
+                <span id="result"></span>
+                <input type="submit" value="Login" onclick="submit()" />
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

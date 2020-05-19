@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            function classToggle() {
+                const navs = document.querySelectorAll('.Navbar__Items')
+
+                navs.forEach(nav => nav.classList.toggle('Navbar__ToggleShow'));
+            }
+
+            document.querySelector('.Navbar__Link-toggle').addEventListener('click', classToggle);
+        });
+
+    </script>
+</head>
+<body>
+
+    <div class="Navbar">
+        <div class="Navbar__Link Navbar__Link-brand">
+            <a href="/Home/Index" class="logo"><img class="icn" src="~/Images/logo.png" /></a>
+        </div>
+        <div class="Navbar__Link Navbar__Link-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav class="Navbar__Items">
+            <div class="Navbar__Link">
+                <a href="/Home/About" class="nav-links">About Me</a>
+            </div>
+            <div class="Navbar__Link">
+                <a href="/Home/Academic" class="nav-links">Academic</a>
+            </div>
+
+        </nav>
+        <nav class="Navbar__Items Navbar__Items--right">
+
+            <div class="Navbar__Link">
+                @if (Context.Session.GetString("username") != null)
+                {<p class="nav-links"> @Context.Session.GetString("username")</p>}
+            else
+            { <a href="/Home/Login" class="nav-links">Login</a>}
+            </div>
+            @if (Context.Session.GetString("username") != null)
+            {
+                <div class="Navbar__Link">
+                    <a href="/Home/Logout" class="nav-links">Logout</a>
+                </div>
+            }
+        </nav>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
