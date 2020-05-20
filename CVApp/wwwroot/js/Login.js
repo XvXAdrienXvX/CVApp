@@ -1,4 +1,49 @@
-﻿
+﻿$(document).ready(function () {
+
+    let result = document.getElementById("result");
+
+    $("#create").on("click", function () {
+        $.ajax(
+            {
+                type: "GET",
+                url: "/User/IdentifyUser",
+                data: {
+                    username: this.name
+                },
+                cache: false,
+                success: function (response) {
+
+                    console.log(response);
+                }
+            });
+    });
+
+    $('#submit').click(function (e) {
+        
+        var data = {
+            username: function () { return $("#username").val(); },
+            password: function () { return $("#Password").val(); }
+
+        };
+
+        $.ajax({
+            url: "/User/CheckCredentials",
+            type: "GET",
+            data: { username: data.username, password: data.password },
+            dataType: "html",
+            cache: false,
+            error: function (response) {
+                $('#result').removeClass('strong');
+                $('#result').addClass('short');
+                result.innerHTML = 'Login Failed';
+            },
+            success: function (response) {
+                window.location.href = "/User/Index";
+            }
+        });
+    });
+});
+
 function checkStrength() {
     let result = document.getElementById("result");
     let password = document.getElementById("Password");
@@ -28,31 +73,3 @@ function checkStrength() {
     }
 
 }
-
-function submit() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("Password").value;
-
-    window.location.href = "/User/CheckCredentials?usr=" + username + "&pwd=" + password;
-
-}
-
-$(document).ready(function () {
-    $("#create").on("click", function () {
-        $.ajax(
-            {
-                type: "GET",
-                url: "/User/IdentifyUser",
-
-                data: {
-                    username: this.name
-                },
-
-                cache: false,
-                success: function (data) {
-
-
-                }
-            });
-    });
-});

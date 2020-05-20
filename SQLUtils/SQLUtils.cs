@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace SQLUtils
 {
-    public class SQLUtils : ISQLUtils
+    public class SQLUtils: ISQLUtils
     {
         private readonly SqlConnection _sql;
 
@@ -23,5 +23,19 @@ namespace SQLUtils
             DBConnect.InsertRows(query, _sql, param);         
         }
 
+        public void ClearParamList (List<SqlParameter> param)
+        {
+            param.Clear();
+        }
+
+        public int GetObjectId(string query, List<SqlParameter> param = null)
+        {
+            return DBConnect.GetId(query, _sql, param);
+        }
+
+        public IEnumerable<dynamic> GetObjectWithParam(string query, List<SqlParameter> param = null)
+        {
+            return DBConnect.SelectRows(query, _sql, param);
+        }
     }
 }

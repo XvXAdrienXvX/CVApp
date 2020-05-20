@@ -22,26 +22,33 @@ namespace CVApp
             return sqlConnection;
         }
 
-        public static IEnumerable<dynamic> SelectRows(string queryString, SqlConnection connect)
+        public static IEnumerable<dynamic> SelectRows(string queryString, SqlConnection connect, List<SqlParameter> param = null)
         {
             var dataTableResults = new DataTable();
 
             using (var connection = new SqlConnection(path))
-            {
-                try
-                {
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter();
-                    adapter.SelectCommand = new SqlCommand(queryString, connect);
-                    adapter.Fill(dataTableResults);
-                    connection.Close();
+            {               
+                    try
+                    {
+                        connection.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        adapter.SelectCommand = new SqlCommand(queryString, connect);
+                        if (param.Count > 0)
+                        {
+                            foreach (var SqlParam in param)
+                            {
+                              adapter.SelectCommand.Parameters.Add(SqlParam);
+                            }
+                        }
+                        adapter.Fill(dataTableResults);
+                        connection.Close();
 
-                    return SQLUtilHelper.ConvertDataTableToList(dataTableResults);
-                }
-                catch(Exception e)
-                {
-                    throw new Exception($"Unable to get data because of:{e}");
-                }
+                        return SQLUtilHelper.ConvertDataTableToList(dataTableResults);
+                    }
+                    catch (SqlException e)
+                    {
+                        throw new Exception($"Unable to get data because of:{e}");
+                    }
             }
 
         }
@@ -72,6 +79,41 @@ namespace CVApp
 
                 }
             }
+        }
+
+        public static int GetId(string queryString, SqlConnection connect, List<SqlParameter> param = null)
+        {
+            int ObjectId = 0;
+            using (var connection = new SqlConnection(path))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = queryString;
+
+                    if(param.Count > 0)
+                    {
+                        foreach (var SqlParam in param)
+                        {
+                            cmd.Parameters.Add(SqlParam);
+                        }
+                    }
+
+                    try
+                    {
+                        connection.Open();
+                        ObjectId = (int)cmd.ExecuteScalar();
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
+
+                }
+            }
+
+            return ObjectId;
         }
 
     }

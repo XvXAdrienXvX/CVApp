@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DAL
 {
-    public class AdminDAL : IAdminDAL
+    public class AdminDAL: IAdminDAL
     {
         private readonly ISQLUtils _sqlutil;
         private  List<SqlParameter> _param;
@@ -17,12 +17,12 @@ namespace DAL
             _sqlutil = new SQLUtils.SQLUtils();
         }
 
-        public IEnumerable<dynamic> GetAllUsers()
-        {
-            string query = "SELECT * FROM Users";
+        //public IEnumerable<dynamic> GetAllUsers()
+        //{
+        //    string query = "SELECT * FROM Users";
 
-            return _sqlutil.GetObject(query);
-        }
+        //    return _sqlutil.GetObject(query);
+        //}
 
         public void CreateUser(UsersDTO users)
         {

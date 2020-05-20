@@ -11,6 +11,8 @@ namespace CVApp.Models
 
         public int UserId { get; set; }
 
+        public string Username { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -20,6 +22,8 @@ namespace CVApp.Models
         public string Email { get; set; }
 
         public string Resume { get; set; }
+
+        public bool Admin { get; set; }
 
         public List<SkillsViewModel> skills { get; set; }
     }

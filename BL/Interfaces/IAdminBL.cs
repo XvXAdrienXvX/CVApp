@@ -5,7 +5,7 @@ namespace BL.Interfaces
 {
     public interface IAdminBL
     {
-        IEnumerable<dynamic> GetUsers();
+        //IEnumerable<dynamic> GetUsers();
 
         void CreateUser(Users user);
     }

@@ -7,6 +7,25 @@
     <Win32Resource />
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\background.jpg" />
+    <None Include="wwwroot\Images\c.png" />
+    <None Include="wwwroot\Images\coder.jpg" />
+    <None Include="wwwroot\Images\computer.jpg" />
+    <None Include="wwwroot\Images\dna.jpg" />
+    <None Include="wwwroot\Images\halfmoon.png" />
+    <None Include="wwwroot\Images\java.png" />
+    <None Include="wwwroot\Images\jon.jpg" />
+    <None Include="wwwroot\Images\logo.png" />
+    <None Include="wwwroot\Images\office.jpg" />
+    <None Include="wwwroot\Images\office2.jpg" />
+    <None Include="wwwroot\Images\source.png" />
+    <None Include="wwwroot\Images\sql.png" />
+    <None Include="wwwroot\Images\stark.png" />
+    <None Include="wwwroot\Images\technology.jpg" />
+    <None Include="wwwroot\Images\user.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

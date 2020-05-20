@@ -16,9 +16,12 @@ namespace CVApp.Services
 
             foreach (var item in data)
             {
+                userDetails.Username = item["Username"].ToString();
                 userDetails.FirstName = item["FirstName"].ToString();
                 userDetails.Email = item["Email"].ToString();
-                userDetails.Phone = Int32.Parse(item["Phone"].ToString());            
+                userDetails.Phone = Int32.Parse(item["Phone"].ToString());
+                userDetails.Resume = item["Resume"].ToString();
+                userDetails.Admin = (bool)item["Admin"];
             }
             return userDetails;
         }

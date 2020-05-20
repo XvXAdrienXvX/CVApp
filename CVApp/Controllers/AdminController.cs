@@ -12,24 +12,24 @@ namespace MyCV.Controllers
         private readonly IAdminBL _adminBL;
         private readonly ConvertToViewModel _model;
 
-        public AdminController()
-        {
-            _adminBL = new AdminBl();
-            _model = new ConvertToViewModel();
-        }
+        //public AdminController()
+        //{
+        //    _adminBL = new AdminBl();
+        //    _model = new ConvertToViewModel();
+        //}
 
-        public ActionResult Admin()
-        {
-            var data = _adminBL.GetUsers();
-            var ViewModel = _model.convertToUserList(data);
+        //public ActionResult Admin()
+        //{
+        //    var data = _adminBL.GetUsers();
+        //    var ViewModel = _model.convertToUserList(data);
 
-            return View(ViewModel);
-        }
+        //    return View(ViewModel);
+        //}
       
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         [HttpPost]
         public ActionResult AddUser(UserViewModel model)
@@ -37,7 +37,7 @@ namespace MyCV.Controllers
             Users user = new Users
             {
                 Username = model.username,
-                password = model.Password,
+                Password = model.Password,
                 Email = model.Email
 
             };
