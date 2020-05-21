@@ -19,5 +19,7 @@ namespace DAL.Interface
         IEnumerable<dynamic> GetUserById(int UserId);
 
         int GetUserId(string username, string password);
+
+        IEnumerable<dynamic> GetUserSkillsById(int UserId);
     }
 }

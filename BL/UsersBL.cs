@@ -36,5 +36,10 @@ namespace BL
         {
             return _userDAL.GetUserId(username, password);
         }
+
+        public IEnumerable<dynamic> GetUserSkillsById(int UserId)
+        {
+            return _userDAL.GetUserSkillsById(UserId);
+        }
     }
 }

@@ -36,8 +36,8 @@ namespace CVApp.Controllers
 
         public ActionResult About()
         {
-            var data = _userBL.GetUserDetails();
-            var model = new ConvertToViewModel().convert(data);
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var model = new ConvertToViewModel().convert(_userBL.GetUsersById((int)userId));
 
             return View(model);
         }
@@ -55,8 +55,10 @@ namespace CVApp.Controllers
             return View();
         }
 
-        public ActionResult Skills()
+        public ActionResult Skill()
         {
+            //var userId = HttpContext.Session.GetInt32("UserId");
+            //var model = new ConvertToViewModel().convertToSkillList(_userBL.GetUserSkillsById((int)userId));
 
             return View();
         }
@@ -79,6 +81,7 @@ namespace CVApp.Controllers
             var userModel = new ConvertToViewModel().convert(_userBL.GetUsersById(userId));
 
             HttpContext.Session.SetString("Username", userModel.Username);
+            HttpContext.Session.SetInt32("UserId", userModel.UserId);
             if (userModel.Admin)
             {
                 return RedirectToAction("Index");

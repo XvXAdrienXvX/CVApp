@@ -25,6 +25,11 @@ namespace CVApp.Models
 
         public bool Admin { get; set; }
 
-        public List<SkillsViewModel> skills { get; set; }
+        public virtual List<SkillsViewModel> skills { get; set; }
+
+        public UserDetailsViewModel ()
+        {
+            skills = new List<SkillsViewModel>();
+        }
     }
 }

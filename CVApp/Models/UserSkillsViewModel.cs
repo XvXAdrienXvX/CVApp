@@ -17,11 +17,11 @@ namespace CVApp.Models
 
         public int SkillLevel { get; set; }
 
-        public virtual List<UserSkillsViewModel> UserSkillList { get; set; }
+        public virtual List<SkillsViewModel> UserSkillList { get; set; }
 
         public UserSkillsViewModel()
         {
-            UserSkillList = new List<UserSkillsViewModel>();
+            UserSkillList = new List<SkillsViewModel>();
         }
     }
 }

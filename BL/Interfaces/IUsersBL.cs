@@ -13,5 +13,7 @@ namespace BL.Interfaces
         IEnumerable<dynamic> GetUserDetails();
 
         int GetUserId(string username, string password);
+
+        IEnumerable<dynamic> GetUserSkillsById(int UserId);
     }
 }

@@ -35,7 +35,7 @@ namespace CVApp
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -44,8 +44,9 @@ namespace CVApp
         
 
             services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(1);// session timeout
+            services.AddSession(opts =>
+            {
+                opts.Cookie.IsEssential = true; // make the session cookie Essential
             });
             services.AddMvc();
             services.AddOptions();
@@ -53,7 +54,8 @@ namespace CVApp
             services.AddScoped(typeof(IUsersBL),typeof(UsersBL));
             services.AddScoped(typeof(IUsersDAL), typeof(UsersDAL));
             services.AddScoped(typeof(ISQLUtils), typeof(SQLUtils.SQLUtils));
-           
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddSingleton<IConfiguration>(Configuration);
         }
 

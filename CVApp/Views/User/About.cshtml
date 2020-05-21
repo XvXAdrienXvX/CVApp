@@ -56,8 +56,7 @@
             <h2 class="Title">My <span>Skills</span></h2>
             <div class="skillset">
 
-                @Html.PartialAsync("Skill",Model)
-
+                @{ await Html.RenderPartialAsync("Skill", Model);}
             </div>
         </div>
     </li>
