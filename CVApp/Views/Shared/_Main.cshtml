@@ -44,12 +44,12 @@
         <nav class="Navbar__Items Navbar__Items--right">
 
             <div class="Navbar__Link">
-                @if (Context.Session.GetString("username") != null)
-                {<p class="nav-links"> @Context.Session.GetString("username")</p>}
+                @if (Context.Session.GetString("Username") != null)
+                {<p class="nav-links"> @Context.Session.GetString("Username")</p>}
             else
             { <a href="/Home/Login" class="nav-links">Login</a>}
             </div>
-            @if (Context.Session.GetString("username") != null)
+            @if (Context.Session.GetString("Username") != null)
             {
                 <div class="Navbar__Link">
                     <a href="/Home/Logout" class="nav-links">Logout</a>
