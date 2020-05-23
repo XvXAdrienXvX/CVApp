@@ -17,16 +17,24 @@ namespace DAL
             _sqlutil = new SQLUtils.SQLUtils();
         }
 
-        //public IEnumerable<dynamic> GetAllUsers()
-        //{
-        //    string query = "SELECT * FROM Users";
+        public IEnumerable<dynamic> GetAllUsers(int adminId)
+        {
+            const string query = @"SELECT U.Username,U.Email,U.Phone,U.Password
+                                   FROM Users AS U
+                                   JOIN AppAdmin AS AA ON U.UserID = AA.UserId
+                                   WHERE AA.AdminID = @AdminId";
 
-        //    return _sqlutil.GetObject(query);
-        //}
+            _param = new List<SqlParameter>
+            {
+                new SqlParameter("AdminId",adminId)
+            };
+
+            return _sqlutil.GetObjectWithParam(query, _param);
+        }
 
         public void CreateUser(UsersDTO users)
         {
-            string query = "INSERT INTO Users(Username,Email,Password) VALUES (@Username,@Email,@Password)";
+            string query = @"INSERT INTO Users(Username,Email,Password) VALUES (@Username,@Email,@Password)";
 
             _param = new List<SqlParameter>
             {
@@ -36,6 +44,18 @@ namespace DAL
             };
 
             _sqlutil.Insert(query, _param);
+        }
+
+        public int GetAdminId(int userId)
+        {
+            const string query = @"SELECT AdminId FROM AppAdmin WHERE UserId = @UserId";
+
+            _param = new List<SqlParameter>
+            {
+                new SqlParameter("UserID",userId),
+            };
+
+            return _sqlutil.GetObjectId(query, _param);
         }
     }
 }

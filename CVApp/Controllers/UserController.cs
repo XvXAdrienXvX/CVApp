@@ -57,9 +57,7 @@ namespace CVApp.Controllers
 
         public ActionResult Skill()
         {
-            //var userId = HttpContext.Session.GetInt32("UserId");
-            //var model = new ConvertToViewModel().convertToSkillList(_userBL.GetUserSkillsById((int)userId));
-
+           
             return View();
         }
 
@@ -77,19 +75,27 @@ namespace CVApp.Controllers
         [HttpGet]
         public ActionResult CheckCredentials(string username, string password)
         {
-            int userId = _userBL.GetUserId(username, password);
-            var userModel = new ConvertToViewModel().convert(_userBL.GetUsersById(userId));
-
-            HttpContext.Session.SetString("Username", userModel.Username);
-            HttpContext.Session.SetInt32("UserId", userModel.UserId);
-            if (userModel.Admin)
+            int? userId = _userBL.GetUserId(username, password);
+            if(userId != null)
             {
-                return RedirectToAction("Index");
+                var userModel = new ConvertToViewModel().convert(_userBL.GetUsersById((int)userId));
+
+                HttpContext.Session.SetString("Username", userModel.Username);
+                HttpContext.Session.SetInt32("UserId", userModel.UserId);
+                if (userModel.Admin)
+                {
+                    return RedirectToAction("Admin", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
+           
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

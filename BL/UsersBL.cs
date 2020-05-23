@@ -41,5 +41,10 @@ namespace BL
         {
             return _userDAL.GetUserSkillsById(UserId);
         }
+
+        public int GetAdminId(int userId)
+        {
+            return _userDAL.GetAdminId(userId);
+        }
     }
 }

@@ -80,5 +80,17 @@ namespace DAL
 
             return _sqlutil.GetObjectWithParam(query, _param);
         }
+
+        public int GetAdminId(int userId)
+        {
+            const string query = @"SELECT AdminId FROM AppAdmin WHERE UserId = @UserId";
+
+            _param = new List<SqlParameter>
+            {
+                new SqlParameter("UserID",userId),
+            };
+
+            return _sqlutil.GetObjectId(query, _param);
+        }
     }
 }

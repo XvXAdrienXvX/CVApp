@@ -41,7 +41,7 @@ namespace CVApp
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-        
+            services.AddMvc(opt => opt.EnableEndpointRouting = false);
 
             services.AddDistributedMemoryCache();
             services.AddSession(opts =>
@@ -53,6 +53,8 @@ namespace CVApp
             services.AddHttpContextAccessor();
             services.AddScoped(typeof(IUsersBL),typeof(UsersBL));
             services.AddScoped(typeof(IUsersDAL), typeof(UsersDAL));
+            services.AddScoped(typeof(IAdminBL), typeof(AdminBl));
+            services.AddScoped(typeof(IAdminDAL), typeof(AdminDAL));
             services.AddScoped(typeof(ISQLUtils), typeof(SQLUtils.SQLUtils));
             services.AddDistributedMemoryCache();
             services.AddSession();

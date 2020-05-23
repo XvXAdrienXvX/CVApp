@@ -42,7 +42,6 @@ namespace CVApp.Services
                 user.Add(new UserViewModel
                 {
                     username = item["Username"].ToString(),
-                    Password = item["Password"].ToString(),
                     Email = item["Email"].ToString()
                 });
 

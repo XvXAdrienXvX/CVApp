@@ -17,10 +17,10 @@ namespace BL
             _adminDAL = adminDAL;
         }
 
-        //public IEnumerable<dynamic> GetUsers()
-        //{
-        //   return _adminDAL.GetAllUsers();           
-        //}
+        public IEnumerable<dynamic> GetUsers(int adminId)
+        {
+            return _adminDAL.GetAllUsers(adminId);
+        }
 
         public void CreateUser(Users user)
         {
@@ -32,6 +32,11 @@ namespace BL
             };
 
             _adminDAL.CreateUser(usrDTO);
+        }
+
+        public int GetAdminId(int userId)
+        {
+            return _adminDAL.GetAdminId(userId);
         }
     }
 }
