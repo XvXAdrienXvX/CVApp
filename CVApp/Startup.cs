@@ -41,7 +41,7 @@ namespace CVApp
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddMvc(opt => opt.EnableEndpointRouting = false);
+        
 
             services.AddDistributedMemoryCache();
             services.AddSession(opts =>

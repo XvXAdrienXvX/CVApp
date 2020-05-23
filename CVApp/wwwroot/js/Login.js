@@ -36,6 +36,9 @@
                 $('#result').removeClass('strong');
                 $('#result').addClass('short');
                 result.innerHTML = 'Login Failed';
+            },
+            success: function (response) {
+                window.location.href = "/User/Index";
             }
         });
     });

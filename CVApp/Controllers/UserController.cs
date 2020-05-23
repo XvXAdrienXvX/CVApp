@@ -84,7 +84,7 @@ namespace CVApp.Controllers
                 HttpContext.Session.SetInt32("UserId", userModel.UserId);
                 if (userModel.Admin)
                 {
-                    return RedirectToAction("Admin", "Admin");
+                    return RedirectToAction("Index");
                 }
                 else
                 {

@@ -42,8 +42,6 @@ namespace DAL
                                    JOIN UserSkills AS US on U.UserID = US.UserId
                                    WHERE U.UserID = @UserID";
 
-            _sqlutil.ClearParamList(_param);
-
             _param = new List<SqlParameter>
             {
                 new SqlParameter("UserID",UserId)
@@ -55,8 +53,6 @@ namespace DAL
         public int GetUserId(string username, string password)
         {
             const string query = @"SELECT UserID FROM Users WHERE Username = @username AND Password = @password";
-
-            _sqlutil.ClearParamList(_param);
 
             _param = new List<SqlParameter>
             {
