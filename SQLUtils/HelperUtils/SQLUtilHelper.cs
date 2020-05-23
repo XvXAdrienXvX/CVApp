@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace SQLUtils.HelperUtils
 
             foreach (var row in dt.Rows)
             {
-                dtList.Add((dynamic)row);
+                dtList.Add(row);
             }
 
             return dtList.ToList();

@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using BL;
 using BL.Interfaces;
 using BL.Models;
+using CVApp.Models;
 using DAL;
 using DAL.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +35,7 @@ namespace CVApp
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -42,14 +44,20 @@ namespace CVApp
         
 
             services.AddDistributedMemoryCache();
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(1);// session timeout
+            services.AddSession(opts =>
+            {
+                opts.Cookie.IsEssential = true; // make the session cookie Essential
             });
             services.AddMvc();
             services.AddOptions();
-            services.AddScoped<IUsersBL, UsersBL>();
-            services.AddScoped<IUsersDAL, UsersDAL>();
-            services.AddScoped<ISQLUtils, SQLUtils.SQLUtils>();
+            services.AddHttpContextAccessor();
+            services.AddScoped(typeof(IUsersBL),typeof(UsersBL));
+            services.AddScoped(typeof(IUsersDAL), typeof(UsersDAL));
+            services.AddScoped(typeof(IAdminBL), typeof(AdminBl));
+            services.AddScoped(typeof(IAdminDAL), typeof(AdminDAL));
+            services.AddScoped(typeof(ISQLUtils), typeof(SQLUtils.SQLUtils));
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddSingleton<IConfiguration>(Configuration);
         }
 
@@ -62,7 +70,7 @@ namespace CVApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/User/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -76,7 +84,7 @@ namespace CVApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}");
+                    template: "{controller=User}/{action=Login}/{id?}");
             });
         }
     }

@@ -59,7 +59,14 @@ ul {
     grid-gap: 1vw;
 }
 
-.text-wrapper h1 {
+.text-wrapper{
+    width: 70%;
+    margin-left: 10%;
+}
+
+.bio {
+   margin-bottom: 50%;
+   margin-left: 10%;
 }
 
 .bio h1 span {
@@ -193,7 +200,6 @@ img {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    margin: 0;
     padding: 0;
 }
 

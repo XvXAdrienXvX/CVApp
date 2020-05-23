@@ -10,8 +10,10 @@ namespace DAL.Interface
 {
     public interface IAdminDAL
     {
-        IEnumerable<dynamic> GetAllUsers();
+        IEnumerable<dynamic> GetAllUsers(int admiId);
 
-        void CreateUser(UsersDTO users);    
+        void CreateUser(UsersDTO users);
+
+        int GetAdminId(int userId);
     }
 }

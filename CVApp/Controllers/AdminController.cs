@@ -3,29 +3,30 @@ using BL.Interfaces;
 using BL.Models;
 using CVApp.Models;
 using CVApp.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyCV.Controllers
+namespace CVApp.Controllers
 {
     public class AdminController : Controller
     {
         private readonly IAdminBL _adminBL;
-        private readonly ConvertToViewModel _model;
 
-        public AdminController()
+        public AdminController(IAdminBL adminBL)
         {
-            _adminBL = new AdminBl();
-            _model = new ConvertToViewModel();
+            _adminBL = adminBL;
         }
 
         public ActionResult Admin()
         {
-            var data = _adminBL.GetUsers();
-            var ViewModel = _model.convertToUserList(data);
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var adminId = _adminBL.GetAdminId((int)userId);
+            var data = _adminBL.GetUsers(adminId);
+            var model = new ConvertToViewModel().convertToUserList(data);
 
-            return View(ViewModel);
+            return View(model);
         }
-      
+
         public ActionResult Create()
         {
             return View();
@@ -37,7 +38,7 @@ namespace MyCV.Controllers
             Users user = new Users
             {
                 Username = model.username,
-                password = model.Password,
+                Password = model.Password,
                 Email = model.Email
 
             };

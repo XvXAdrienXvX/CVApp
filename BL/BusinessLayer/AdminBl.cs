@@ -12,14 +12,14 @@ namespace BL
     {
         private readonly IAdminDAL _adminDAL;
 
-        public AdminBl()
+        public AdminBl(IAdminDAL adminDAL)
         {
-            _adminDAL = new AdminDAL();
+            _adminDAL = adminDAL;
         }
 
-        public IEnumerable<dynamic> GetUsers()
+        public IEnumerable<dynamic> GetUsers(int adminId)
         {
-           return _adminDAL.GetAllUsers();           
+            return _adminDAL.GetAllUsers(adminId);
         }
 
         public void CreateUser(Users user)
@@ -28,10 +28,15 @@ namespace BL
             {
                 Username = user.Username,
                 Email = user.Email,
-                password = user.password
+                password = user.Password
             };
 
             _adminDAL.CreateUser(usrDTO);
+        }
+
+        public int GetAdminId(int userId)
+        {
+            return _adminDAL.GetAdminId(userId);
         }
     }
 }

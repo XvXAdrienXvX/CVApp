@@ -9,8 +9,10 @@ namespace CVApp.Models
     {
         public int SkillId { get; set; }
 
-        public int ShortName { get; set; }
+        public string ShortName { get; set; }
 
-        public int LongName { get; set; }
+        public string LongName { get; set; }
+
+        public int SkillLevel { get; set; }
     }
 }

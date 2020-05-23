@@ -1,5 +1,6 @@
 ﻿using BL.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace BL.Interfaces
 {
@@ -7,6 +8,14 @@ namespace BL.Interfaces
     {
         IEnumerable<dynamic> GetUsers();
 
+        IEnumerable<dynamic> GetUsersById(int UserId);
+
         IEnumerable<dynamic> GetUserDetails();
+
+        int GetUserId(string username, string password);
+
+        IEnumerable<dynamic> GetUserSkillsById(int UserId);
+
+        int GetAdminId(int userId);
     }
 }

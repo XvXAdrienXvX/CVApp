@@ -17,6 +17,10 @@ namespace BL.Models
 
         public string Email { get; set; }
 
-        public string password { get; set; }
+        public string Password { get; set; }
+
+        public int Phone { get; set; }
+
+        public bool Role { get; set; }
     }
 }
