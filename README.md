@@ -17,7 +17,7 @@ Admin View
 # Technologies
  - ASP.Net Core MVC
  - C#
- - SQL
+ - SQL Server, ADO.Net
  - JavaScript
  - HTML/CSS
 
