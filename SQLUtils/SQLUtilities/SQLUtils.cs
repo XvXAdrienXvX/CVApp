@@ -4,23 +4,23 @@ using System.Data.SqlClient;
 
 namespace SQLUtils
 {
-    public class SQLUtils: ISQLUtils
+    public class SQLUtils<T>: ISQLUtils<T>
     {
         private readonly SqlConnection _sql;
 
         public SQLUtils()
         {
-            _sql = DBConnect.CreateSQLConnection();
+            _sql = DBConnect<T>.CreateSQLConnection();
         }
        
-        public IEnumerable<dynamic> GetObject(string query, List<SqlParameter> param = null)
+        public IEnumerable<T> GetObject(string query, List<SqlParameter> param = null)
         {
-            return DBConnect.SelectRows(query, _sql);
+            return DBConnect<T>.SelectRows(query, _sql);
         }
 
         public void Insert(string query,List<SqlParameter>param)
         {
-            DBConnect.InsertRows(query, _sql, param);         
+            DBConnect<T>.InsertRows(query, _sql, param);         
         }
 
         public void ClearParamList (List<SqlParameter> param)
@@ -30,12 +30,12 @@ namespace SQLUtils
 
         public int GetObjectId(string query, List<SqlParameter> param = null)
         {
-            return DBConnect.GetId(query, _sql, param);
+            return DBConnect<T>.GetId(query, _sql, param);
         }
 
-        public IEnumerable<dynamic> GetObjectWithParam(string query, List<SqlParameter> param = null)
+        public IEnumerable<T> GetObjectWithParam(string query, List<SqlParameter> param = null)
         {
-            return DBConnect.SelectRows(query, _sql, param);
+            return DBConnect<T>.SelectRows(query, _sql, param);
         }
     }
 }

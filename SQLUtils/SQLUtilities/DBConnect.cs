@@ -10,7 +10,7 @@ using SQLUtils.HelperUtils;
 
 namespace CVApp
 {
-    public class DBConnect
+    public class DBConnect<T>
     {
         private static readonly string path = ConfigurationManager.ConnectionStrings["connection"].ToString();
 
@@ -22,7 +22,7 @@ namespace CVApp
             return sqlConnection;
         }
 
-        public static IEnumerable<dynamic> SelectRows(string queryString, SqlConnection connect, List<SqlParameter> param = null)
+        public static IEnumerable<T> SelectRows(string queryString, SqlConnection connect, List<SqlParameter> param = null)
         {
             var dataTableResults = new DataTable();
 
@@ -43,7 +43,7 @@ namespace CVApp
                         adapter.Fill(dataTableResults);
                         connection.Close();
 
-                        return SQLUtilHelper.ConvertDataTableToList(dataTableResults);
+                        return SQLUtilHelper<T>.ConvertDataTableToList(dataTableResults);
                     }
                     catch (SqlException e)
                     {

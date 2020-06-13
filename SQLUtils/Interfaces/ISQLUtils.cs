@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 
 namespace SQLUtils
 {
-    public interface ISQLUtils
+    public interface ISQLUtils<T>
     {
-        IEnumerable<dynamic> GetObject(string query, List<SqlParameter> param = null);
+        IEnumerable<T> GetObject(string query, List<SqlParameter> param = null);
 
         void Insert(string query,List<SqlParameter>param);
 
@@ -14,6 +14,6 @@ namespace SQLUtils
 
         int GetObjectId(string query, List<SqlParameter> param = null);
 
-        IEnumerable<dynamic> GetObjectWithParam(string query, List<SqlParameter> param = null);
+        IEnumerable<T> GetObjectWithParam(string query, List<SqlParameter> param = null);
     }
 }

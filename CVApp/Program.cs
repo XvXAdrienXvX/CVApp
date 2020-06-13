@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CVApp
 {
-    public class Program
+    public class Program<T>
     {
         public static void Main(string[] args)
         {
@@ -19,6 +19,6 @@ namespace CVApp
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup<T>>();
     }
 }

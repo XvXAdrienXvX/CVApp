@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace SQLUtils.HelperUtils
 {
-    public class SQLUtilHelper
+    public class SQLUtilHelper<T>
     {
         public SQLUtilHelper()
         {
 
         }
 
-        public static IEnumerable<dynamic> ConvertDataTableToList(DataTable dt)
+        public static IEnumerable<T> ConvertDataTableToList(DataTable dt)
         {
-            List<dynamic> dtList = new List<dynamic>();
+            List<T> dtList = new List<T>();
 
-            foreach (var row in dt.Rows)
+            foreach (T row in dt.Rows)
             {
                 dtList.Add(row);
             }

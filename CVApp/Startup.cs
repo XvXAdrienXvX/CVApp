@@ -20,7 +20,7 @@ using SQLUtils;
 
 namespace CVApp
 {
-    public class Startup
+    public class Startup<T>
     {
         public Startup(IConfiguration configuration)
         {
@@ -55,7 +55,7 @@ namespace CVApp
             services.AddScoped(typeof(IUsersDAL), typeof(UsersDAL));
             services.AddScoped(typeof(IAdminBL), typeof(AdminBl));
             services.AddScoped(typeof(IAdminDAL), typeof(AdminDAL));
-            services.AddScoped(typeof(ISQLUtils), typeof(SQLUtils.SQLUtils));
+            services.AddScoped(typeof(ISQLUtils<T>), typeof(SQLUtils.SQLUtils<T>));
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddSingleton<IConfiguration>(Configuration);
