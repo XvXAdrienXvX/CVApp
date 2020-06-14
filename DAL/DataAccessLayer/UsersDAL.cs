@@ -1,4 +1,6 @@
-﻿using DAL.Interface;
+﻿using DAL.Entities;
+using DAL.HelperUtils;
+using DAL.Interface;
 using SQLUtils;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -17,22 +19,22 @@ namespace DAL
             _param = new List<SqlParameter>();
         }
 
-        public IEnumerable<dynamic> GetUsers()
+        public IEnumerable<Users> GetUsers()
         {
             const string query = @"SELECT * FROM Users";
 
-            return _sqlutil.GetObject(query);
+            return EntityHelper.ConvertDataTable<Users>(_sqlutil.GetObject(query));
         }
 
-        public IEnumerable<dynamic> GetUserDetails()
+        public IEnumerable<UserDetails> GetUserDetails()
         {
             const string query = @"SELECT UD.FirstName, UD.Phone, UD.Email, UD.Resume 
                                    FROM UserDetails AS UD LEFT JOIN UserSkills AS US ON UD.UserId=US.UserId";
 
-            return _sqlutil.GetObject(query);
+            return EntityHelper.ConvertDataTable<UserDetails>(_sqlutil.GetObject(query));
         }
 
-        public IEnumerable<dynamic> GetUserById(int UserId)
+        public IEnumerable<UserDetails> GetUserById(int UserId)
         {
             const string query = @"SELECT U.UserID, U.Username, UD.FirstName, UD.Phone, UD.Email, UD.Resume,
                                    CAST(CASE WHEN EXISTS(SELECT 1 FROM AppAdmin AS AA WHERE AA.UserId = U.UserID)
@@ -47,7 +49,7 @@ namespace DAL
                 new SqlParameter("UserID",UserId)
             };
 
-            return _sqlutil.GetObjectWithParam(query, _param);
+            return EntityHelper.ConvertDataTable <UserDetails> (_sqlutil.GetObjectWithParam(query, _param));
         }
 
         public int GetUserId(string username, string password)
@@ -63,7 +65,7 @@ namespace DAL
             return _sqlutil.GetObjectId(query, _param);
         }
 
-        public IEnumerable<dynamic> GetUserSkillsById(int UserId)
+        public IEnumerable<UserSkills> GetUserSkillsById(int UserId)
         {
             const string query = @"SELECT UserSkillId, UserId, ShortName, LongName, SkillLevel 
                                    FROM UserSkills
@@ -74,7 +76,7 @@ namespace DAL
                 new SqlParameter("UserID",UserId),
             };
 
-            return _sqlutil.GetObjectWithParam(query, _param);
+            return EntityHelper.ConvertDataTable<UserSkills> (_sqlutil.GetObjectWithParam(query, _param));
         }
 
         public int GetAdminId(int userId)

@@ -1,5 +1,5 @@
 ﻿using DAL.DTO;
-
+using DAL.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,15 +12,15 @@ namespace DAL.Interface
 {
     public interface IUsersDAL
     {
-        IEnumerable<dynamic> GetUserDetails();
+        IEnumerable<UserDetails> GetUserDetails();
 
-        IEnumerable<dynamic> GetUsers();
+        IEnumerable<Users> GetUsers();
 
-        IEnumerable<dynamic> GetUserById(int UserId);
+        IEnumerable<UserDetails> GetUserById(int UserId);
 
         int GetUserId(string username, string password);
 
-        IEnumerable<dynamic> GetUserSkillsById(int UserId);
+        IEnumerable<UserSkills> GetUserSkillsById(int UserId);
 
         int GetAdminId(int userId);
     }

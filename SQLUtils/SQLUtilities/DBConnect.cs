@@ -22,7 +22,7 @@ namespace CVApp
             return sqlConnection;
         }
 
-        public static IEnumerable<dynamic> SelectRows(string queryString, SqlConnection connect, List<SqlParameter> param = null)
+        public static DataTable SelectRows(string queryString, SqlConnection connect, List<SqlParameter> param = null)
         {
             var dataTableResults = new DataTable();
 
@@ -43,7 +43,7 @@ namespace CVApp
                         adapter.Fill(dataTableResults);
                         connection.Close();
 
-                        return SQLUtilHelper.ConvertDataTableToList(dataTableResults);
+                        return dataTableResults;
                     }
                     catch (SqlException e)
                     {
@@ -115,6 +115,5 @@ namespace CVApp
 
             return ObjectId;
         }
-
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DAL.DTO;
+using DAL.Entities;
+using DAL.HelperUtils;
 using DAL.Interface;
 using SQLUtils;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace DAL
             _sqlutil = new SQLUtils.SQLUtils();
         }
 
-        public IEnumerable<dynamic> GetAllUsers(int adminId)
+        public IEnumerable<Users> GetAllUsers(int adminId)
         {
             const string query = @"SELECT U.Username,U.Email,U.Phone,U.Password
                                    FROM Users AS U
@@ -29,7 +31,7 @@ namespace DAL
                 new SqlParameter("AdminId",adminId)
             };
 
-            return _sqlutil.GetObjectWithParam(query, _param);
+            return EntityHelper.ConvertDataTable<Users>(_sqlutil.GetObjectWithParam(query, _param));
         }
 
         public void CreateUser(UsersDTO users)

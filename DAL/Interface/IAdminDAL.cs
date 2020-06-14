@@ -1,4 +1,5 @@
 ﻿using DAL.DTO;
+using DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ namespace DAL.Interface
 {
     public interface IAdminDAL
     {
-        IEnumerable<dynamic> GetAllUsers(int admiId);
+        IEnumerable<Users> GetAllUsers(int admiId);
 
         void CreateUser(UsersDTO users);
 

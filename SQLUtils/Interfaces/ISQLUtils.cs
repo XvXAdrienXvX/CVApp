@@ -6,7 +6,7 @@ namespace SQLUtils
 {
     public interface ISQLUtils
     {
-        IEnumerable<dynamic> GetObject(string query, List<SqlParameter> param = null);
+        DataTable GetObject(string query, List<SqlParameter> param = null);
 
         void Insert(string query,List<SqlParameter>param);
 
@@ -14,6 +14,6 @@ namespace SQLUtils
 
         int GetObjectId(string query, List<SqlParameter> param = null);
 
-        IEnumerable<dynamic> GetObjectWithParam(string query, List<SqlParameter> param = null);
+        DataTable GetObjectWithParam(string query, List<SqlParameter> param = null);
     }
 }
