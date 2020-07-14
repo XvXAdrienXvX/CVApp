@@ -28,16 +28,16 @@ Admin View
 # Sample Screenshots
 Login Screen
 
-https://user-images.githubusercontent.com/52564376/82753660-50a97100-9dd8-11ea-9fef-8ad6f7b2bad4.png
+<img src="docs/Login.png" width="400">
 
 Home Page
 
-https://user-images.githubusercontent.com/52564376/82753663-5606bb80-9dd8-11ea-86d4-88ab63ce3c82.png
+<img src="docs/Main.png" width="400">
 
 About Me Section
 
-https://user-images.githubusercontent.com/52564376/82753665-5dc66000-9dd8-11ea-9fac-7edad382358f.png
+<img src="docs/AboutMe.png" width="400">
 
 Skills Section
 
-https://user-images.githubusercontent.com/52564376/82753667-6454d780-9dd8-11ea-8b0b-f6dd71909289.png
+<img src="docs/Skills.png" width="400">
