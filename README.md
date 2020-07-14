@@ -22,6 +22,9 @@ Admin View
  - JavaScript
  - HTML/CSS
 
+# Architecture
+<img src="docs/CVApp.jpg" width="600">
+
 # Sample Screenshots
 Login Screen
 
