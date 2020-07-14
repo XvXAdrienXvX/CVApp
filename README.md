@@ -26,18 +26,32 @@ Admin View
 <img src="docs/CVApp.jpg" width="600">
 
 # Sample Screenshots
+<table width="500" border="0" cellpadding="5">
+<tr>
+<td align="center" valign="center">
+<br />
 Login Screen
+<img src="docs/Login.png">
+</td>
 
-<img src="docs/Login.png" width="400">
-
+<td align="center" valign="center">
+<br />
 Home Page
+<img src="docs/Main.png">
+</td>
+</tr>
 
-<img src="docs/Main.png" width="400">
-
+<tr>
+<td align="center" valign="center">
+<br />
 About Me Section
+<img src="docs/AboutMe.png">
+</td>
 
-<img src="docs/AboutMe.png" width="400">
-
+<td align="center" valign="center">
+<br />
 Skills Section
-
-<img src="docs/Skills.png" width="400">
+<img src="docs/Skills.png">
+</td>
+</tr>
+</table>
