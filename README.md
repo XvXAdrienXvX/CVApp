@@ -1,5 +1,5 @@
 # CVApp - Online Resume Template (Web Application)
-###### work in progress
+###### Work in progress
 The aim of this project is to provide an online resume template which users can use to display information like
 their own skills,personal statements, education details
 
@@ -28,30 +28,19 @@ Admin View
 # Sample Screenshots
 <table width="500" border="0" cellpadding="5">
 <tr>
-<td align="center" valign="center">
-<br />
-Login Screen
-<img src="docs/Login.png">
-</td>
-
-<td align="center" valign="center">
-<br />
-Home Page
-<img src="docs/Main.png">
-</td>
-</tr>
-
-<tr>
-<td align="center" valign="center">
-<br />
-About Me Section
-<img src="docs/AboutMe.png">
-</td>
-
-<td align="center" valign="center">
-<br />
-Skills Section
-<img src="docs/Skills.png">
-</td>
-</tr>
+    <th>Login Screen</th>
+    <th>Home Page</th>
+  </tr>
+  <tr>
+    <td align="center" valign="center"><img src="docs/Login.png"></td>
+    <td align="center" valign="center"><img src="docs/Main.png"></td>
+  </tr>
+   <tr>
+   <th>About Me Section</th>
+    <th>Skills Section</th>
+  </tr>
+  <tr>
+    <td align="center" valign="center"><img src="docs/AboutMe.png"></td>
+    <td align="center" valign="center"><img src="docs/Skills.png"></td>
+  </tr>
 </table>
