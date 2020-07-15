@@ -46,8 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer\AdminDAL.cs" />
-    <Compile Include="DTO\UserDetailsDTO.cs" />
-    <Compile Include="DTO\UsersDTO.cs" />
     <Compile Include="Entities\AppAdmin.cs" />
     <Compile Include="Entities\Skills.cs" />
     <Compile Include="Entities\UserDetails.cs" />

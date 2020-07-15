@@ -1,9 +1,6 @@
 ﻿using CVApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace CVApp.Services
 {
@@ -17,15 +14,17 @@ namespace CVApp.Services
             List<SkillsViewModel> skills = new List<SkillsViewModel>();
 
             foreach (var item in data)
-            {
-                userDetails.UserId = Convert.ToInt32(item["UserId"]);
-                userDetails.Username = item["Username"].ToString();
-                userDetails.FirstName = item["FirstName"].ToString();
-                userDetails.Email = item["Email"].ToString();
-                userDetails.Phone = Int32.Parse(item["Phone"].ToString());
-                userDetails.Resume = item["Resume"].ToString();
-                userDetails.Admin = (bool)item["Admin"];
-                skills.Add( new SkillsViewModel() { ShortName = item["ShortName"].ToString(), SkillLevel = Convert.ToInt32(item["SkillLevel"])});
+            {              
+                    userDetails.FirstName = item.GetType().GetProperty("FirstName").GetValue(item);
+                    userDetails.Email = item.GetType().GetProperty("Email").GetValue(item);
+                    userDetails.Phone = item.GetType().GetProperty("Phone").GetValue(item);
+                    userDetails.Resume = item.GetType().GetProperty("Resume").GetValue(item);
+                    userDetails.Admin = item.GetType().GetProperty("Admin").GetValue(item);
+
+                foreach (dynamic obj in item.GetType().GetProperty("Skills").GetValue(item))
+                {
+                    skills.Add(new SkillsViewModel() { ShortName = obj.GetType().GetProperty("ShortName").GetValue(obj), SkillLevel = Convert.ToInt32(obj.GetType().GetProperty("SkillLevel").GetValue(obj)) });
+                }
             }
 
             userDetails.skills.AddRange(skills);

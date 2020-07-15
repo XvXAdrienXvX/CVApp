@@ -24,5 +24,9 @@ namespace DAL.Entities
         public string Email { get; set; }
 
         public string Resume { get; set; }
+
+        public bool Admin { get; set; }
+
+        public List<Skills> Skills { get; set; } = new List<Skills>();
     }
 }

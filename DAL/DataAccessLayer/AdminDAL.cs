@@ -1,10 +1,8 @@
-﻿using DAL.DTO;
-using DAL.Entities;
+﻿using DAL.Entities;
 using DAL.HelperUtils;
 using DAL.Interface;
 using SQLUtils;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -34,7 +32,7 @@ namespace DAL
             return EntityHelper.ConvertDataTable<Users>(_sqlutil.GetObjectWithParam(query, _param));
         }
 
-        public void CreateUser(UsersDTO users)
+        public void CreateUser(Users users)
         {
             string query = @"INSERT INTO Users(Username,Email,Password) VALUES (@Username,@Email,@Password)";
 
@@ -42,7 +40,7 @@ namespace DAL
             {
                 new SqlParameter("Username",users.Username),
                 new SqlParameter("Email",users.Email),
-                new SqlParameter("Password",users.password)
+                new SqlParameter("Password",users.Password)
             };
 
             _sqlutil.Insert(query, _param);

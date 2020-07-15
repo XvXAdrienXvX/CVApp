@@ -38,7 +38,7 @@ namespace DAL
         {
             const string query = @"SELECT U.UserID, U.Username, UD.FirstName, UD.Phone, UD.Email, UD.Resume,
                                    CAST(CASE WHEN EXISTS(SELECT 1 FROM AppAdmin AS AA WHERE AA.UserId = U.UserID)
-                                   THEN 'True' ELSE 'False' END AS BIT) AS Admin, US.ShortName, US.SkillLevel, US.UserSkillId
+                                   THEN 'True' ELSE 'False' END AS BIT) AS Admin, US.ShortName AS ShortName, US.SkillLevel as SkillLevel, US.UserSkillId
                                    FROM Users AS U
                                    JOIN UserDetails AS UD ON U.UserID = UD.UserId
                                    JOIN UserSkills AS US on U.UserID = US.UserId

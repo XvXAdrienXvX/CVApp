@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using BL;
+using BL.Helper;
 using BL.Interfaces;
-using BL.Models;
-using CVApp.Models;
 using DAL;
 using DAL.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLUtils;
+using System.Reflection;
 
 namespace CVApp
 {
@@ -39,7 +34,14 @@ namespace CVApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
 
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         
 

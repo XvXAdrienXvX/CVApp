@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL.Models
+namespace BL.DTO
 {
-    public class Skills
+    public class SkillsDTO
     {
         public int SkillId { get; set; }
 

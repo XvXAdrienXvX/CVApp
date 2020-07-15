@@ -5,12 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace BL.Models
+namespace BL.DTO
 {
-    public class UserSkills
+    public class UserSkillsDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserSkillID{ get; set; }
 
         public int UserID { get; set; }
@@ -21,11 +19,11 @@ namespace BL.Models
 
         public string LongName { get; set; }
 
-        public virtual List<UserSkills> UserSkillList { get; set; }
+        public virtual List<SkillsDTO> UserSkillList { get; set; }
 
-        public UserSkills()
+        public UserSkillsDTO()
         {
-            UserSkillList = new List<UserSkills>();
+            UserSkillList = new List<SkillsDTO>();
         }
     }
 }

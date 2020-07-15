@@ -1,16 +1,18 @@
 ﻿using BL;
 using BL.Interfaces;
-using BL.Models;
+using BL.DTO;
 using CVApp.Models;
 using CVApp.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace CVApp.Controllers
 {
     public class AdminController : Controller
     {
         private readonly IAdminBL _adminBL;
+        private readonly IMapper _mapper;
 
         public AdminController(IAdminBL adminBL)
         {
@@ -35,15 +37,8 @@ namespace CVApp.Controllers
         [HttpPost]
         public ActionResult AddUser(UserViewModel model)
         {
-            Users user = new Users
-            {
-                Username = model.username,
-                Password = model.Password,
-                Email = model.Email
-
-            };
-
-            _adminBL.CreateUser(user);
+            var userModel = _mapper.Map<UsersDTO>(model);
+            _adminBL.CreateUser(userModel);
 
             return RedirectToAction("Admin");
         }

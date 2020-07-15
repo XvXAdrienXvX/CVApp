@@ -1,34 +1,35 @@
 ﻿using BL.Interfaces;
-using BL.Models;
-using DAL;
-using DAL.DTO;
+using BL.DTO;
 using DAL.Interface;
 using System.Collections.Generic;
-using System.Data;
+using DAL.Entities;
+using AutoMapper;
 
 namespace BL
 {
     public class AdminBl : IAdminBL
     {
         private readonly IAdminDAL _adminDAL;
+        private readonly IMapper _mapper;
 
         public AdminBl(IAdminDAL adminDAL)
         {
             _adminDAL = adminDAL;
         }
 
-        public IEnumerable<dynamic> GetUsers(int adminId)
+        public IEnumerable<UsersDTO> GetUsers(int adminId)
         {
-            return _adminDAL.GetAllUsers(adminId);
+            var userModel = _adminDAL.GetAllUsers(adminId);
+            yield return _mapper.Map<UsersDTO>(userModel);
         }
 
-        public void CreateUser(Users user)
+        public void CreateUser(UsersDTO user)
         {
-            UsersDTO usrDTO = new UsersDTO
+            Users usrDTO = new Users
             {
                 Username = user.Username,
                 Email = user.Email,
-                password = user.Password
+                Password = user.Password
             };
 
             _adminDAL.CreateUser(usrDTO);
