@@ -8,7 +8,7 @@ namespace BL.Interfaces
     {
         IEnumerable<UsersDTO> GetUsers();
 
-        IEnumerable<UserDetailsDTO> GetUsersById(int UserId);
+        IEnumerable<UserDetailsDTO> GetUserDetailsById(int UserId);
 
         IEnumerable<UserDetailsDTO> GetUserDetails();
 

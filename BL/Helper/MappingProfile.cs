@@ -15,6 +15,7 @@ namespace BL.Helper
         private void ConfigureMappings()
         {
             CreateMap<UserDetailsDTO, UserDetails>().ReverseMap();
+            CreateMap<UserSkillsDTO, UserSkills>().ReverseMap();
         }
     }
 }

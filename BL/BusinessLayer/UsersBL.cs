@@ -28,9 +28,9 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserDetailsDTO> GetUsersById(int UserId)
+        public IEnumerable<UserDetailsDTO> GetUserDetailsById(int UserId)
         {
-            var userDetails = _userDAL.GetUserById(UserId);
+            var userDetails = _userDAL.GetUserDetailsById(UserId);
             return _mapper.Map <IEnumerable<UserDetailsDTO>>(userDetails);
         }
 
@@ -41,7 +41,8 @@ namespace BL
 
         public IEnumerable<UserSkillsDTO> GetUserSkillsById(int UserId)
         {
-            yield return _mapper.Map <UserSkillsDTO>(_userDAL.GetUserSkillsById(UserId));
+            var userSkills = _userDAL.GetUserSkillsById(UserId);
+            return _mapper.Map<IEnumerable<UserSkillsDTO>>(userSkills);
         }
 
         public int GetAdminId(int userId)

@@ -27,6 +27,6 @@ namespace DAL.Entities
 
         public bool Admin { get; set; }
 
-        public List<Skills> Skills { get; set; } = new List<Skills>();
+        public virtual List<UserSkills> Skills { get; set; } = new List<UserSkills>();
     }
 }

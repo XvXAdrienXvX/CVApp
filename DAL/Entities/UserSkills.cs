@@ -20,12 +20,5 @@ namespace DAL.Entities
         public string ShortName { get; set; }
 
         public string LongName { get; set; }
-
-        public virtual List<UserSkills> UserSkillList { get; set; }
-
-        public UserSkills()
-        {
-            UserSkillList = new List<UserSkills>();
-        }
     }
 }

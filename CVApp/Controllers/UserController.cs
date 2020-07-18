@@ -29,7 +29,7 @@ namespace CVApp.Controllers
         public ActionResult About()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            var model = new ConvertToViewModel().convert(_userBL.GetUsersById((int)userId));
+            var model = new ConvertToViewModel().convertToViewWithNavigationProp(_userBL.GetUserDetailsById((int)userId), _userBL.GetUserSkillsById((int)userId));
 
             return View(model);
         }
@@ -70,9 +70,9 @@ namespace CVApp.Controllers
             int? userId = _userBL.GetUserId(username, password);
             if(userId != null)
             {
-                var userModel = new ConvertToViewModel().convert(_userBL.GetUsersById((int)userId));
+                var userModel = new ConvertToViewModel().convertToViewWithNavigationProp(_userBL.GetUserDetailsById((int)userId), _userBL.GetUserSkillsById((int)userId));
 
-                HttpContext.Session.SetString("Username", userModel.Username);
+                HttpContext.Session.SetString("Username", userModel.FirstName);
                 HttpContext.Session.SetInt32("UserId", userModel.UserId);
                 if (userModel.Admin)
                 {

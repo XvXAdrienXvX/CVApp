@@ -18,12 +18,5 @@ namespace BL.DTO
         public string ShortName { get; set; }
 
         public string LongName { get; set; }
-
-        public virtual List<SkillsDTO> UserSkillList { get; set; }
-
-        public UserSkillsDTO()
-        {
-            UserSkillList = new List<SkillsDTO>();
-        }
     }
 }

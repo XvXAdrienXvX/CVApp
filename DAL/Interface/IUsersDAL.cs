@@ -9,7 +9,7 @@ namespace DAL.Interface
 
         IEnumerable<Users> GetUsers();
 
-        IEnumerable<UserDetails> GetUserById(int UserId);
+        IEnumerable<UserDetails> GetUserDetailsById(int UserId);
 
         int GetUserId(string username, string password);
 
