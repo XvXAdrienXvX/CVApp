@@ -73,7 +73,7 @@ namespace CVApp.Controllers
                 var userModel = new ConvertToViewModel().convertToViewWithNavigationProp(_userBL.GetUserDetailsById((int)userId), _userBL.GetUserSkillsById((int)userId));
 
                 HttpContext.Session.SetString("Username", userModel.FirstName);
-                HttpContext.Session.SetInt32("UserId", userModel.UserId);
+                HttpContext.Session.SetInt32("UserId", (int)userId);
                 if (userModel.Admin)
                 {
                     return RedirectToAction("Index");

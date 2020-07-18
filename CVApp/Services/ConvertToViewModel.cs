@@ -14,7 +14,8 @@ namespace CVApp.Services
             List<UserSkillsViewModel> skills = new List<UserSkillsViewModel>();
 
             foreach (var item in data)
-            {              
+            {    
+                userDetails.UserId = item.GetType().GetProperty("UserId").GetValue(item);
                 userDetails.FirstName = item.GetType().GetProperty("FirstName").GetValue(item);
                 userDetails.Email = item.GetType().GetProperty("Email").GetValue(item);
                 userDetails.Phone = item.GetType().GetProperty("Phone").GetValue(item);
