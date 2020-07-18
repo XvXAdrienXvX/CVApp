@@ -5,12 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace BL.Models
+namespace BL.DTO
 {
-    public class Users
+    public class UsersDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
         public string Username { get; set; }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace BL.Models
+namespace DAL.Entities
 {
     public class UserSkills
     {
@@ -20,12 +20,5 @@ namespace BL.Models
         public string ShortName { get; set; }
 
         public string LongName { get; set; }
-
-        public virtual List<UserSkills> UserSkillList { get; set; }
-
-        public UserSkills()
-        {
-            UserSkillList = new List<UserSkills>();
-        }
     }
 }

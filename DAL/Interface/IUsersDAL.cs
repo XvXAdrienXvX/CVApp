@@ -1,26 +1,19 @@
-﻿using DAL.DTO;
-
-using System;
-using System.Collections;
+﻿using DAL.Entities;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Interface
 {
     public interface IUsersDAL
     {
-        IEnumerable<dynamic> GetUserDetails();
+        IEnumerable<UserDetails> GetUserDetails();
 
-        IEnumerable<dynamic> GetUsers();
+        IEnumerable<Users> GetUsers();
 
-        IEnumerable<dynamic> GetUserById(int UserId);
+        IEnumerable<UserDetails> GetUserDetailsById(int UserId);
 
         int GetUserId(string username, string password);
 
-        IEnumerable<dynamic> GetUserSkillsById(int UserId);
+        IEnumerable<UserSkills> GetUserSkillsById(int UserId);
 
         int GetAdminId(int userId);
     }

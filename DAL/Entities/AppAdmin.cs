@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace BL.Models
+namespace DAL.Entities
 {
     public class AppAdmin
     {

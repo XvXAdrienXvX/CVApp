@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,9 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SQLUtils.HelperUtils
+namespace DAL.HelperUtils
 {
-    public class SQLUtilHelper
+    public class EntityHelper
     {
         public static List<T> ConvertDataTable<T>(DataTable dt)
         {

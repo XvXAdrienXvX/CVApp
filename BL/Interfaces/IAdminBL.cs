@@ -1,13 +1,13 @@
-﻿using BL.Models;
+﻿using BL.DTO;
 using System.Collections.Generic;
 
 namespace BL.Interfaces
 {
     public interface IAdminBL
     {
-        IEnumerable<dynamic> GetUsers(int adminId);
+        IEnumerable<UsersDTO> GetUsers(int adminId);
 
-        void CreateUser(Users user);
+        void CreateUser(UsersDTO user);
 
         int GetAdminId(int userId);
     }

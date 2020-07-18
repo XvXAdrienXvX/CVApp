@@ -1,31 +1,34 @@
 ﻿using CVApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace CVApp.Services
 {
     public class ConvertToViewModel
     {
        
-        public UserDetailsViewModel convert(IEnumerable<dynamic> data)
+        public UserDetailsViewModel convertToViewWithNavigationProp(IEnumerable<dynamic> data, IEnumerable<dynamic> NavigationProperty = null)
         {
             UserDetailsViewModel userDetails = new UserDetailsViewModel();
-            userDetails.skills = new List<SkillsViewModel>();
-            List<SkillsViewModel> skills = new List<SkillsViewModel>();
+            userDetails.skills = new List<UserSkillsViewModel>();
+            List<UserSkillsViewModel> skills = new List<UserSkillsViewModel>();
 
             foreach (var item in data)
+            {    
+                userDetails.UserId = item.GetType().GetProperty("UserId").GetValue(item);
+                userDetails.FirstName = item.GetType().GetProperty("FirstName").GetValue(item);
+                userDetails.Email = item.GetType().GetProperty("Email").GetValue(item);
+                userDetails.Phone = item.GetType().GetProperty("Phone").GetValue(item);
+                userDetails.Resume = item.GetType().GetProperty("Resume").GetValue(item);
+                userDetails.Admin = item.GetType().GetProperty("Admin").GetValue(item);
+            }
+
+            if (NavigationProperty != null)
             {
-                userDetails.UserId = Convert.ToInt32(item["UserId"]);
-                userDetails.Username = item["Username"].ToString();
-                userDetails.FirstName = item["FirstName"].ToString();
-                userDetails.Email = item["Email"].ToString();
-                userDetails.Phone = Int32.Parse(item["Phone"].ToString());
-                userDetails.Resume = item["Resume"].ToString();
-                userDetails.Admin = (bool)item["Admin"];
-                skills.Add( new SkillsViewModel() { ShortName = item["ShortName"].ToString(), SkillLevel = Convert.ToInt32(item["SkillLevel"])});
+                foreach (dynamic obj in NavigationProperty)
+                {
+                    skills.Add(new UserSkillsViewModel() { ShortName = obj.GetType().GetProperty("ShortName").GetValue(obj), SkillLevel = Convert.ToInt32(obj.GetType().GetProperty("SkillLevel").GetValue(obj)) });
+                }
             }
 
             userDetails.skills.AddRange(skills);
